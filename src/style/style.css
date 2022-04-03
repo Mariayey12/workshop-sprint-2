@@ -1,0 +1,109 @@
+* app */
+
+ 
+* {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+@import url('https://fonts.googleapis.com/css2?family=Spartan:wght@500&display=swap');
+ 
+.contenedor {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+Button.contained{
+    background-color: green;
+    padding: 6px 15px;
+    height: auto;
+    border: none;
+    margin-bottom: 0;
+    height: 40px !important;
+}
+
+
+
+
+/* filtro */
+.padreF {
+  background-color: #c1c1c1;
+  margin: 20px auto;
+  padding: 10px;
+  width: 25%;
+  height: 50%;
+}
+.search{
+    display: flex;
+}
+.input{
+    width: 80%;
+    margin: auto;
+    border: 2px solid #dddddd;
+    border-radius: 20px;
+    padding: 5px;
+}
+.lupa{
+    background-color: #76b900;
+    padding: 5px;
+    border-radius: 50px;
+}
+
+/* cards */
+.padreC {
+    background-color: yellowgreen;
+    color: black;
+    margin: 20px auto;
+    width: 75%;
+}
+.card{
+    background-color: white;
+    padding: 10px;
+    margin: 20px 10px;
+}
+.card h2{
+    color: #76b900;
+    margin: 10px;
+}
+.card h4{
+    color: #76b900;
+    margin: 10px;
+}
+.card p{
+    color: #4a4a4a;
+    margin: 10px;
+}
+.card p b{
+    color: black;
+}
+
+/* detail */
+.btnBack{
+    border: 2px solid #76b900;
+    margin: 10px 20px;
+    padding: auto;
+    width: 5%;
+    display: flex;
+    align-items: center;
+}
+
+    /* media */
+    @media (max-width:1000px) {
+        .contenedor{
+            flex-direction: column;
+        }
+        .padreF{
+            width: 90%;
+        }
+        .padreC{
+            width: 90%;
+        }
+    }
+    @media (max-width:1040px) {
+        .contenedor2{
+            flex-direction: column;
+        }
+       
+    }
+
+    
