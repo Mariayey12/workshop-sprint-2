@@ -10,27 +10,28 @@ import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import SearchIcon from "@mui/icons-material/Search";
-import FilterType from "../helpers/FilterType";
+import TipoFiltro from "../helpers/TipoFiltro";
 
-import "../style/style.css";
+import  "../style/style.css";
+//import { UseContext } from "../helpers/UseContext";
 
-export const Filter = () => {
+export const Filtro = () => {
   const [industry, setIndustry] = useState([]);
   const [primary, setPrimary] = useState([]);
   const [session, setSession] = useState([]);
+  const [Filtros, setFiltros] = useState({});
+ 
 
-  const getFilters = async () => {
+  const ObtenerFiltro = async () => {
     const { industry_segment, primary_topic, session_type } =
-      await FilterType();
+      await TipoFiltro();
     setIndustry(industry_segment);
     setPrimary(primary_topic);
     setSession(session_type);
   };
 
   useEffect(() => {
-    getFilters();
-
-   
+    ObtenerFiltro()
   }, []);
 
   const [expanded, setExpanded] = React.useState(false);
@@ -39,15 +40,44 @@ export const Filter = () => {
     setExpanded(isExpanded ? panel : false);
   };
 
+  const handleFilterChange = (event) => {
+    setFiltros({
+      ...Filtros,
+      [event.target.name]: event.target.checked,
+    });
+    console.log(Filtros)
 
-  
-  return (
+  };
+  //input
+  const [formS, setformS] = useState({
+    filterName: '',
+  })
+  let { filterName } = formS;
+
+  const handleC = ({ target }) => {
+    setformS({
+        ...formS,
+        [target.name]: target.value
+    })
+   
+}
+
+  const handleSInput = (e) => {
+    e.preventDefault()
+    setformS(formS)
  
+   
+  }
+
+
+  return (
     <div className="padreF">
-      <h2>Filters</h2>
+      <h2>Filtros</h2>
       <div className="search">
-        <input placeholder="search" className="input" />
-        <SearchIcon className="lupa" />
+        <form onSubmit={handleSInput}>
+          <input placeholder="search" className="input" name="filterName" value={filterName} onChange={handleC} />
+        <SearchIcon  className="lupa"/>
+        </form>
       </div>
       <div>
         <Accordion
@@ -67,7 +97,12 @@ export const Filter = () => {
             <FormGroup>
               {industry.map((element) => {
                 return (
-                  <FormControlLabel control={<Checkbox/>} label={element} />
+                  <FormControlLabel
+                    control={<Checkbox />}
+                    label={element}
+                    name={element}
+                    onChange={handleFilterChange}
+                  />
                 );
               })}
             </FormGroup>
@@ -121,6 +156,5 @@ export const Filter = () => {
         </Accordion>
       </div>
     </div>
-    
   );
 };

@@ -1,9 +1,10 @@
-const FilterType = async() => {
+const TipoFiltro = async() => {
  
-    const url = "https://6243a5813da3ac772b04e2cd.mockapi.io/sessions";
+    const url = "https://workshops-2.herokuapp.com/sessions/";
     let industry_segment = [];
     let primary_topic = [];
     let session_type = [];
+    let date =[];
     const data = await fetch(url);
     const json = await data.json();
   
@@ -28,4 +29,4 @@ const FilterType = async() => {
       session_type: session_type,
     };
   };
-  export default FilterType
+  export default TipoFiltro
